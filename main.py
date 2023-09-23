@@ -6,7 +6,7 @@ import smtplib
 
 
 emailLogin = "eashwarvallabha180@gmail.com"
-password =""
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
@@ -43,7 +43,8 @@ def sumbit_form():
         server = smtplib.SMTP("smtp.gmail.com", 587, timeout=120)
         server.starttls()
         server.login(emailLogin,app.config['SECRET_KEY'])
-        server.sendmail(emailLogin,email,messgae)
+        server.sendmail(emailLogin,email,"ThankYou for Giving FeedBack")
+        server.sendmail(emailLogin,"ramagownieswar@karunya.edu.in",messgae)
         return redirect("/")
     return "Give Proper Resopnse"
 
