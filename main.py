@@ -6,10 +6,10 @@ import smtplib
 
 
 emailLogin = "eashwarvallabha180@gmail.com"
-password ="btlb ybvb uoyd guag"
+password =""
 app = Flask(__name__)
 
-os.environ['MY_VAR']= os.environ.get('FLASK_KEY')
+app.config['SECRET_KEY'] = "btlb ybvb uoyd guag"
 @app.route('/')
 def Home(username=None,be=0):
     return render_template('index.html',e=username,c=be)
@@ -39,10 +39,10 @@ def sumbit_form():
         email=request.form["email"]
         subject=request.form["subject"]
         messgae=request.form["message"]
-        print(email,messgae)
+
         server = smtplib.SMTP("smtp.gmail.com", 587, timeout=120)
         server.starttls()
-        server.login(emailLogin,os.environ['MY_VAR'])
+        server.login(emailLogin,app.config['SECRET_KEY'])
         server.sendmail(emailLogin,email,messgae)
         return redirect("/")
     return "Give Proper Resopnse"
