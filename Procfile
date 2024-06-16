@@ -1,1 +1,1 @@
-flask --app main run
+gunicorn main:app
